@@ -143,11 +143,10 @@ This project demonstrates:
   - Implementation of machine learning for anomaly detection
   - Real-time notification via email or messaging platforms
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## Acknowledgments
 
 - This project was developed as an educational exercise
 - Inspired by NIST Special Publication 800-94, "Guide to Intrusion Detection and Prevention Systems"
+
+## Copyright
+© 2025 Shema Prince 🤴. All rights reserved.
