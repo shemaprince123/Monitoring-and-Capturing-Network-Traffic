@@ -1,0 +1,67 @@
+version: '3'
+
+networks:
+  techstart_network:
+    driver: bridge
+
+services:
+  # Web Server Container
+  web_server:
+    image: httpd:2.4
+    container_name: techstart_web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./web_content:/usr/local/apache2/htdocs/
+    networks:
+      - techstart_network
+
+  # FTP Server Container
+  ftp_server:
+    image: fauria/vsftpd
+    container_name: techstart_ftp
+    ports:
+      - "21:21"
+      - "20:20"
+    environment:
+      - FTP_USER=ftpuser
+      - FTP_PASS=password123
+      - PASV_ENABLE=true
+      - PASV_MIN_PORT=21100
+      - PASV_MAX_PORT=21110
+    volumes:
+      - ./ftp_data:/home/vsftpd
+    networks:
+      - techstart_network
+
+  # IDPS Container (Suricata)
+  idps:
+    image: jasonish/suricata
+    container_name: techstart_idps
+    network_mode: "host"
+    volumes:
+      - ./suricata_rules:/etc/suricata/rules
+      - ./suricata_logs:/var/log/suricata
+    command: -i eth0 -S /etc/suricata/rules/custom.rules
+
+  # Simple Packet Capture Container
+  packet_capture:
+    image: nicolaka/netshoot
+    container_name: techstart_capture
+    network_mode: "host"
+    volumes:
+      - ./pcap_files:/captures
+    command: /bin/sh -c "while true; do sleep 3600; done"
+
+  # Attack Simulation Container
+  attack_simulator:
+    image: kalilinux/kali-rolling
+    container_name: attack_simulator
+    tty: true
+    stdin_open: true
+    networks:
+      - techstart_network
+    volumes:
+      - ./attack_scripts:/scripts
+    command: bash -c "apt-get update && apt-get install -y nmap hydra sqlmap && tail -f /dev/null"

@@ -1,0 +1,63 @@
+networks:
+  techstart_network:
+    driver: bridge
+
+services:
+  # Web Server Container
+  web_server:
+    image: httpd:2.4
+    container_name: techstart_web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./web_content:/usr/local/apache2/htdocs/
+    networks:
+      - techstart_network
+
+  # Simple FTP Server Container
+  ftp_server:
+    image: stilliard/pure-ftpd
+    container_name: techstart_ftp
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    environment:
+      - PUBLICHOST=localhost
+      - FTP_USER_NAME=ftpuser
+      - FTP_USER_PASS=password123
+      - FTP_USER_HOME=/home/ftpusers
+    volumes:
+      - ./ftp_data:/home/ftpusers
+    networks:
+      - techstart_network
+
+  # Simple IDPS Container 
+  idps:
+    image: alpine:latest
+    container_name: techstart_idps
+    network_mode: "host"
+    volumes:
+      - ./suricata_logs:/logs
+    command: sh -c "while true; do echo '[SIMULATION] Monitoring network traffic...' >> /logs/idps.log; sleep 60; done"
+
+  # Simple Packet Capture Container
+  packet_capture:
+    image: alpine:latest
+    container_name: techstart_capture
+    network_mode: "host"
+    volumes:
+      - ./pcap_files:/captures
+    command: sh -c "while true; do echo '[SIMULATION] Capturing packets...' >> /captures/capture.log; sleep 60; done"
+
+  # Attack Simulation Container
+  attack_simulator:
+    image: ubuntu:latest
+    container_name: attack_simulator
+    tty: true
+    stdin_open: true
+    networks:
+      - techstart_network
+    volumes:
+      - ./attack_scripts:/scripts
+    command: bash -c "apt-get update && apt-get install -y curl && while true; do sleep 3600; done"

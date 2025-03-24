@@ -1,0 +1,20 @@
+=======================================================
+WELCOME TO TECHSTART SOLUTIONS FTP SERVER
+=======================================================
+
+This FTP server is for authorized users only.
+
+Files available in this directory are publicly accessible
+to all authenticated users. Please note that all file 
+transfers and access attempts are logged and monitored
+for security purposes.
+
+For assistance, please contact:
+support@techstart-example.com
+
+=======================================================
+SECURITY NOTICE:
+All activities on this server are monitored. Unauthorized
+access attempts will be investigated and may be reported
+to appropriate authorities.
+=======================================================

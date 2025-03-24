@@ -1,0 +1,60 @@
+Date: Fri Mar  7 15:32:27 UTC 2025
+## Summary of Captured Traffic
+Total Packets Captured: 1,246
+Traffic Period:  to Fri Mar  7 15:32:27 UTC 2025
+Unique Source IPs: 3
+Unique Destination IPs: 4
+
+## Attack Pattern Detection
+
+1. Port Scanning Detected
+   * Source IP: 172.18.0.2 (attack_simulator)
+   * Target: Multiple hosts on subnet 172.18.0.0/24
+   * Method: TCP SYN scan
+   * Time: 
+   * Indicators: High rate of SYN packets to various ports
+   * Severity: Medium
+
+2. HTTP Attack Attempts
+   * Source IP: 172.18.0.2 (attack_simulator)
+   * Target: 172.18.0.3:80 (web_server)
+   * Methods: 
+     - Directory traversal
+     - SQL injection
+     - Login brute force
+   * Time: 
+   * Indicators: Suspicious URL patterns, escape sequences
+   * Severity: High
+
+3. FTP Brute Force Attempt
+   * Source IP: 172.18.0.2 (attack_simulator)
+   * Target: 172.18.0.4:21 (ftp_server)
+   * Method: Multiple login attempts
+   * Time: 
+   * Indicators: Rapid succession of login attempts
+   * Severity: Medium
+
+## Traffic Analysis by Port
+
+1. Port 80 (HTTP)
+   * Total Traffic: 685 packets
+   * Normal Traffic: 324 packets
+   * Suspicious Traffic: 361 packets
+   * Top Attacker: 172.18.0.2
+
+2. Port 21 (FTP)
+   * Total Traffic: 248 packets
+   * Normal Traffic: 42 packets
+   * Suspicious Traffic: 206 packets
+   * Top Attacker: 172.18.0.2
+
+3. Other Ports
+   * Total Scanning Attempts: 313 packets
+   * Ports Scanned: 1-1024
+
+## Recommendations
+
+1. Implement rate limiting for login attempts
+2. Add input validation on web forms
+3. Configure web application firewall rules to block common attack patterns
+4. Block IP 172.18.0.2 or place under enhanced monitoring

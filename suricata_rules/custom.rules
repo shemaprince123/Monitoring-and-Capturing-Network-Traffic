@@ -1,0 +1,5 @@
+# FTP Brute Force Detection
+alert tcp any any -> $HOME_NET 21 (msg:"INDICATOR-SCAN Potential FTP brute force attempt"; flow:to_server; threshold:type threshold, track by_src, count 5, seconds 60; classtype:attempted-admin; sid:2000001; rev:1;)
+
+# SQL Injection Attempt Detection
+alert http any any -> $HOME_NET 80 (msg:"SQL Injection Attempt - SELECT Statement"; flow:to_server,established; content:"SELECT"; nocase; classtype:web-application-attack; sid:2000003; rev:1;)

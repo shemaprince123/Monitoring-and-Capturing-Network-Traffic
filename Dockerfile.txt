@@ -1,0 +1,22 @@
+FROM ubuntu:latest
+
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    tcpdump \
+    wireshark \
+    net-tools \
+    iputils-ping \
+    suricata \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up working directory
+WORKDIR /app
+
+# Copy configuration files if needed
+COPY suricata_rules/ /etc/suricata/rules/
+
+# Expose ports if necessary
+EXPOSE 80 443
+
+# Command to run when container starts
+CMD ["suricata", "-c", "/etc/suricata/suricata.yaml", "-i", "eth0"]

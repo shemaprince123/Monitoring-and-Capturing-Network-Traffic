@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStart Solutions | Web Development & Cloud Consulting</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #0078d4;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #0078d4;
+        }
+        
+        .nav-menu {
+            display: flex;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+        }
+        
+        .nav-menu a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: #0056b3;
+        }
+        
+        .nav-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, #0078d4 0%, #83c3f7 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #0078d4;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Services section */
+        .services {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        .service-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .service-item {
+            flex: 1 1 300px;
+            max-width: 350px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 48px;
+            color: #0078d4;
+            margin-bottom: 20px;
+        }
+        
+        .service-item h3 {
+            margin-bottom: 15px;
+        }
+        
+        /* About section */
+        .about {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1 1 500px;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .about-image {
+            flex: 1 1 400px;
+        }
+        
+        /* Team section */
+        .team {
+            padding: 80px 0;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .team-member {
+            flex: 1 1 250px;
+            max-width: 280px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .member-name {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .social-links a {
+            margin: 0 8px;
+            font-size: 18px;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #0078d4;
+        }
+        
+        /* Testimonials section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-slide {
+            padding: 30px;
+            display: none;
+        }
+        
+        .testimonial-slide.active {
+            display: block;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .dot.active {
+            background-color: #0078d4;
+        }
+        
+        /* Contact section */
+        .contact {
+            padding: 80px 0;
+        }
+        
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1 1 300px;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #0078d4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 15px;
+        }
+        
+        .contact-form {
+            flex: 1 1 500px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            flex: 1 1 300px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo p {
+            color: #ccc;
+        }
+        
+        .footer-links {
+            flex: 1 1 200px;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #ccc;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.4s;
+                padding: 40px 0;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 0 0 20px;
+                text-align: center;
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Tech<span>Start</span></div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-toggle">☰</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Innovative Tech Solutions for Your Business</h1>
+            <p>We help businesses transform their digital presence with cutting-edge web development and cloud consulting services.</p>
+            <a href="#contact" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer comprehensive technology solutions to help your business thrive in the digital landscape.</p>
+            </div>
+            <div class="service-items">
+                <div class="service-item">
+                    <div class="service-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with modern technologies to deliver exceptional user experiences.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Consulting</h3>
+                    <p>Expert guidance on cloud migration, infrastructure optimization, and managed cloud services.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile Solutions</h3>
+                    <p>Cross-platform mobile applications that provide seamless experiences across all devices.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🔒</div>
+                    <h3>Cybersecurity</h3>
+                    <p>Comprehensive security audits and solutions to protect your digital assets and customer data.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">📊</div>
+                    <h3>Data Analytics</h3>
+                    <p>Transform your data into actionable insights with our advanced analytics solutions.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🔄</div>
+                    <h3>DevOps</h3>
+                    <p>Streamline your development and operations with our efficient DevOps practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About TechStart Solutions</h2>
+                    <p>Founded in 2018, TechStart Solutions has grown from a small team of passionate developers to a dynamic company of 25 skilled professionals dedicated to delivering exceptional technology solutions.</p>
+                    <p>Our mission is to help businesses of all sizes harness the power of technology to drive growth, improve efficiency, and stay ahead in today's competitive market.</p>
+                    <p>With expertise in web development, cloud computing, and digital transformation, we've successfully completed over 200 projects for clients across various industries.</p>
+                    <a href="#contact" class="btn">Work With Us</a>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/500/400" alt="TechStart Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+                <p>Meet the talented professionals behind TechStart Solutions.</p>
+            </div>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="/api/placeholder/150/150" alt="Sarah Johnson" class="member-img">
+                    <h3 class="member-name">Sarah Johnson</h3>
+                    <p class="member-role">CEO & Founder</p>
+                    <div class="social-links">
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/150/150" alt="David Chen" class="member-img">
+                    <h3 class="member-name">David Chen</h3>
+                    <p class="member-role">CTO</p>
+                    <div class="social-links">
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/150/150" alt="Michael Lee" class="member-img">
+                    <h3 class="member-name">Michael Lee</h3>
+                    <p class="member-role">Lead Developer</p>
+                    <div class="social-links">
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/150/150" alt="Emily Rodriguez" class="member-img">
+                    <h3 class="member-name">Emily Rodriguez</h3>
+                    <p class="member-role">Cloud Architect</p>
+                    <div class="social-links">
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from businesses that have transformed with our solutions.</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide active">
+                    <p class="testimonial-text">"TechStart Solutions completely revolutionized our online presence. Their web development team created a beautiful, responsive website that has significantly increased our conversion rates."</p>
+                    <p class="testimonial-author">- John Smith, CEO of Retail Innovations</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-text">"The cloud migration services provided by TechStart were exceptional. They made a complex process smooth and painless, and we've seen a 40% reduction in our infrastructure costs."</p>
+                    <p class="testimonial-author">- Lisa Wong, CTO of FinTech Solutions</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-text">"Working with TechStart on our mobile app development was a fantastic experience. Their team was responsive, creative, and delivered a product that exceeded our expectations."</p>
+                    <p class="testimonial-author">- Mark Johnson, Founder of HealthApp</p>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Ready to start your project? Get in touch with our team.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Our Contact Information</h3>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <p>123 Tech Avenue, Suite 200</p>
+                            <p>San Francisco, CA 94105</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <p>info@techstartsolutions.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>TechStart Solutions</h3>
+                    <p>Innovative technology solutions for forward-thinking businesses.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Cloud Consulting</a></li>
+                        <li><a href="#">Mobile Solutions</a></li>
+                        <li><a href="#">Cybersecurity</a></li>
+                        <li><a href="#">Data Analytics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect With Us</h4>
+                    <ul>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shema Prince 🤴. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a nav link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Testimonial slider
+        const dots = document.querySelectorAll('.dot');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideIndex = dot.getAttribute('data-slide');
+                
+                // Remove active class from all slides and dots
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Add active class to current slide and dot
+                slides[slideIndex].classList.add('active');
+                dot.classList.add('active');
+            });
+        });
+        
+        // Auto-rotate testimonials
+        let currentSlide = 0;
+        
+        function rotateTestimonials() {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Increment slide index
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Add active class to current slide and dot
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        // Rotate testimonials every 5 seconds
+        setInterval(rotateTestimonials, 5000);
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real implementation, you would handle form submission with AJAX
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

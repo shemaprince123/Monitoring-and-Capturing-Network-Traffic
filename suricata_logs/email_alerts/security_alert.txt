@@ -1,0 +1,23 @@
+To: shemaprince123@gmail.com
+From: alerts@techstart.example
+Subject: [SECURITY ALERT] SQL Injection Detected
+Date: Mon Mar 24 09:58:47 UTC 2025
+
+SECURITY ALERT NOTIFICATION
+---------------------------
+
+Alert Type: SQL Injection Attack
+Timestamp: Mon Mar 24 09:58:47 UTC 2025
+Source IP: 172.18.0.2
+Target: Web Server (Port 80)
+Severity: HIGH
+
+Details:
+SQL injection pattern detected in HTTP request to login.php
+Suspicious parameters detected in URL query string
+
+This is a simulated alert that would be sent to your email
+in a production environment with a properly configured mail server.
+
+--
+TechStart Solutions Security Monitoring System
