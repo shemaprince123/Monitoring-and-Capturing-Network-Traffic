@@ -20,4 +20,4 @@ curl "http://techstart_web/admin/"
 curl "http://techstart_web/administrator/"
 curl "http://techstart_web/wp-admin/"
 
-echo "[+] Web attacks complete"
+echo "[+] Web attacks complete"/scripts/notify_attack.sh

